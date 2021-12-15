@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noor/viewModels/menu_view_model.dart';
 import 'viewModels/store_page_view_model.dart';
 import 'views/StorePage/store_page_widget.dart';
 import 'views/MenuPageWidget/menu_page_widget.dart';
@@ -53,7 +54,10 @@ class _NavigationTabState extends State<NavigationTab> {
       create: (_) => StorePageViewModel(),
       child: const StorePageWidget(),
     ),
-    const MenuPageWidget()
+    ChangeNotifierProvider<MenuViewModel>(
+      create: (_) => MenuViewModel(),
+      child: const MenuPageWidget(),
+    ),
   ];
 
   void onTabTapped(int index) {

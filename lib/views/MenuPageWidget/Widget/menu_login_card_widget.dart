@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-class MenuProfileWidget extends StatelessWidget {
-  const MenuProfileWidget({required this.imageLink, required this.userName,Key? key}) : super(key: key);
-
-  final String imageLink;
-  final String userName;
+class MenuLoginCardWidget extends StatelessWidget {
+  const MenuLoginCardWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +20,15 @@ class MenuProfileWidget extends StatelessWidget {
           ),
           elevation: 2,
           child: ListTile(
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               radius: 20,
-              backgroundImage: NetworkImage(imageLink),
+              backgroundImage: NetworkImage('https://bootspider.com/demo-site/noor/assets/images/user-sm/8.jpg'),
             ),
-            title: Text(
-              userName,
+            title: const Text(
+              'Welcome User',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18
               ),

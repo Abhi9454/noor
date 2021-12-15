@@ -1,22 +1,23 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:noor/models/book_model.dart';
+import 'package:noor/models/calender_model.dart';
+import 'package:noor/models/product_model.dart';
 import '../helpers/error_handler.dart';
 import '../config.dart';
 import '../helpers/http_service.dart';
 
-class AuthenticateService {
+class BookPageService {
   final HttpService httpService = HttpService();
 
-
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<List<BookModel>> fetchBooks() async {
     try {
-      final Map<String, dynamic>  map = <String, dynamic>{
-        'emailid' : email,
-        'password' : password
-      };
-      final Response<dynamic> response =
-      await httpService.requestSource(
-          AppConfig().apiUrl + '/login.php', 'POST', data: map);
-      return response.data as Map<String,dynamic>;
+      final Response<dynamic> response = await httpService.requestSource(
+          AppConfig().bookApiLink, 'POST');
+      var _books = jsonDecode(response.data);
+      print(_books['data']);
+      return (_books['data']);
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||
           error.type == DioErrorType.connectTimeout) {

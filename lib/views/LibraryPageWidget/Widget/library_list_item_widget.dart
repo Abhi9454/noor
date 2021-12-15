@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:noor/config.dart';
 import 'package:noor/helpers/url_launcher.dart';
 
-class StoreListItemWidget extends StatelessWidget {
-  StoreListItemWidget({required this.imageLink, required this.productTitle,required this.productAbout,required this.productItemCode,Key? key}) : super(key: key);
+class LibraryListItemWidget extends StatelessWidget {
+  LibraryListItemWidget({required this.bookLink, required this.bookTitle,required this.bookLanguage,required this.bookPublishDate,Key? key}) : super(key: key);
 
-  final String imageLink;
-  final String productTitle;
-  final String productAbout;
-  final String productItemCode;
+  final String bookLink;
+  final String bookTitle;
+  final String bookLanguage;
+  final String bookPublishDate;
 
   final UrlLauncher _urlLauncher = UrlLauncher();
 
@@ -21,8 +21,10 @@ class StoreListItemWidget extends StatelessWidget {
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
-            child: Image.network(
-               imageLink,
+            child: Image(
+              image: const AssetImage(
+                'images/book.png', //header logo image
+              ),
               fit: BoxFit.contain,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.2,
@@ -33,7 +35,7 @@ class StoreListItemWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
               child: Text(
-                productTitle  ,
+                bookTitle  ,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.left,
@@ -45,21 +47,21 @@ class StoreListItemWidget extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 4.0,left: 8.0, right: 8.0),
+            padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
             child: Text(
-              productAbout,
+              bookLanguage + bookPublishDate,
               textAlign: TextAlign.left,
               style: const TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.normal,
-                  fontSize: 13),
+                  fontSize: 15),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
             child: ElevatedButton(
               onPressed: () {
-                _urlLauncher.launchInWebViewWithJavaScript('https://api.whatsapp.com/send/?phone=917027051051&text='+productItemCode);
+                _urlLauncher.launchInWebViewWithJavaScript(bookLink);
               },
               child: const Text('Request to Buy'),
               style: ElevatedButton.styleFrom(
