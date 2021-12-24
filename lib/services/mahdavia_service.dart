@@ -1,24 +1,21 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:noor/models/calender_model.dart';
+import 'package:noor/models/masjid_model.dart';
 import '../helpers/error_handler.dart';
 import '../config.dart';
 import '../helpers/http_service.dart';
 
-class CalenderPageService {
+class MahdaviaService {
   final HttpService httpService = HttpService();
 
-  Future<List<CalenderModel>> fetch() async {
+  Future<List<MahdaviaModel>> fetch() async {
     try {
       final Response<dynamic> response = await httpService.requestSource(
-          AppConfig().apiUrl + '/calender.php', 'POST');
+          AppConfig().apiUrl + '/mahdavia.php', 'POST');
       var json = response.data as Map<String, dynamic>;
       var res = json['data'] as List;
-      List<CalenderModel> _list = res
-          .map<CalenderModel>((json) => CalenderModel.fromJson(json))
+      List<MahdaviaModel> _list = res
+          .map<MahdaviaModel>((json) => MahdaviaModel.fromJson(json))
           .toList();
-      print(_list.length.toString());
       return _list;
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||

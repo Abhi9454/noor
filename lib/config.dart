@@ -29,4 +29,7 @@ class AppConfig{
   final String seeratPageLink = 'https://nooremahdavia.com/seerat.php';
   final String ritualPageLink = 'https://nooremahdavia.com/rituals.php';
   final String dailyQuizApiUrl = 'https://nooremahdavia.com/api/quiz.php';
+  final String mahdaviaPageLink = 'https://nooremahdavia.com/mahdavia.php';
+  final String mashjidLocationPage = 'https://nooremahdavia.com/masjid.php';
+  final String dailyPrayerLink = 'https://nooremahdavia.com/prayer.php';
 }

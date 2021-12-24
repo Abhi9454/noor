@@ -53,7 +53,7 @@ class MenuPageWidget extends StatelessWidget {
                   MenuItemWidget(
                       icon: FontAwesomeIcons.clock,
                       itemName: 'Daily Prayer',
-                      pageName: ''),
+                      pageName: 'dailyPrayer'),
                   const MenuDividerWidget(),
                   MenuItemWidget(
                     icon: FontAwesomeIcons.quran,

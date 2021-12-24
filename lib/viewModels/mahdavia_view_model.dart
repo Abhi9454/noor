@@ -1,22 +1,23 @@
 import 'package:flutter/cupertino.dart';
+import 'package:noor/models/masjid_model.dart';
+import 'package:noor/services/mahdavia_service.dart';
 import '../helpers/error_handler.dart';
 import '../models/calender_model.dart';
 import '../helpers/enum.dart';
-import '../services/calender_page_service.dart';
 
-class CalenderViewModel extends ChangeNotifier{
-  final CalenderPageService _calenderPageService = CalenderPageService();
+class MahdaviaViewModel extends ChangeNotifier{
+  final MahdaviaService _mahdaviaService = MahdaviaService();
   Status _status = Status.init;
 
   Status get status => _status;
 
 
-  late List<CalenderModel> _calenderDetails;
+  late List<MahdaviaModel> _mahdaviaDetails;
 
-  List<CalenderModel> get calenderDetails => _calenderDetails;
+  List<MahdaviaModel> get mahdaviaDetails => _mahdaviaDetails;
 
-  Future<void> _setUserDetails(List<CalenderModel> calenderDetails) async {
-    _calenderDetails = calenderDetails;
+  Future<void> _setMahdavia(List<MahdaviaModel> calenderDetails) async {
+    _mahdaviaDetails = mahdaviaDetails;
     _status = Status.success;
     notifyListeners();
   }
@@ -33,7 +34,7 @@ class CalenderViewModel extends ChangeNotifier{
   fetchCalender() async {
     try {
       _status = Status.loading;
-      _setUserDetails(await _calenderPageService.fetch());
+      _setMahdavia(await _mahdaviaService.fetch());
     } on ShowError catch (error) {
       _status = Status.error;
       _setError(error);

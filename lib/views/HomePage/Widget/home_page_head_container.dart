@@ -6,14 +6,12 @@ class HomePageHeadContainer extends StatelessWidget {
       {required this.date,
       required this.time,
       required this.timeDetails,
-      required this.dateDetails,
       Key? key})
       : super(key: key);
 
   final String date;
   final String time;
   final String timeDetails;
-  final String dateDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -66,17 +64,6 @@ class HomePageHeadContainer extends StatelessWidget {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0, top: 6.0),
-                  child: Text(
-                    dateDetails,
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14),
                   ),
                 ),
                 Center(

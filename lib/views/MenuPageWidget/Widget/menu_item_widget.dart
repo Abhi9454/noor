@@ -27,6 +27,9 @@ class MenuItemWidget extends StatelessWidget {
         if(pageName == 'aboutUs'){
           _urlLauncher.launchInWebViewWithJavaScript(AppConfig().aboutUsPageLink);
         }
+        else if(pageName == 'dailyPrayer'){
+          _urlLauncher.launchInWebViewWithJavaScript(AppConfig().dailyPrayerLink);
+        }
         else if(pageName == 'newsPage'){
           _urlLauncher.launchInWebViewWithJavaScript(AppConfig().newsPageLink);
         }
@@ -46,15 +49,16 @@ class MenuItemWidget extends StatelessWidget {
           _urlLauncher.launchInWebViewWithJavaScript(AppConfig().ritualPageLink);
         }
         else if(pageName == 'masjidPage'){
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MultiProvider(providers: <
-                      ChangeNotifierProvider<
-                          MasjidLocationViewModel>>[
-                    ChangeNotifierProvider<MasjidLocationViewModel>(
-                        create: (_) => MasjidLocationViewModel())
-                  ], child: const MasjidLocationPageWidget())));
+          _urlLauncher.launchInWebViewWithJavaScript(AppConfig().mashjidLocationPage);
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => MultiProvider(providers: <
+          //             ChangeNotifierProvider<
+          //                 MasjidLocationViewModel>>[
+          //           ChangeNotifierProvider<MasjidLocationViewModel>(
+          //               create: (_) => MasjidLocationViewModel())
+          //         ], child: const MasjidLocationPageWidget())));
         }
         else if(pageName == 'contactUs'){
           Navigator.push(

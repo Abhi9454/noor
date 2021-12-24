@@ -1,22 +1,21 @@
 import 'dart:convert';
 
+import 'package:noor/helpers/error_handler.dart';
+import 'package:noor/helpers/http_service.dart';
+import 'package:noor/models/location_model.dart';
 import 'package:dio/dio.dart';
-import 'package:noor/models/book_model.dart';
-import 'package:noor/models/calender_model.dart';
-import 'package:noor/models/product_model.dart';
-import '../helpers/error_handler.dart';
-import '../config.dart';
-import '../helpers/http_service.dart';
 
-class BookPageService {
+
+class LocationService{
+
   final HttpService httpService = HttpService();
 
-  Future<List<BookModel>> fetchBooks() async {
+  Future<Welcome> fetchLocationDetails(String date,String latitude, String longitude) async {
     try {
       final Response<dynamic> response = await httpService.requestSource(
-          AppConfig().bookApiLink, 'POST');
-      var _books = jsonDecode(response.data);
-      return (_books['data']);
+         'https://api.aladhan.com/v1/timings/'+date+'?latitude='+latitude+'&longitude='+longitude, 'GET');
+      final json = welcomeFromJson(jsonEncode(response.data));
+      return json;
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||
           error.type == DioErrorType.connectTimeout) {

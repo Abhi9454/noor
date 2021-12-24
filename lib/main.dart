@@ -44,7 +44,7 @@ class _NavigationTabState extends State<NavigationTab> {
   final List<Widget> _children = <Widget>[
     ChangeNotifierProvider<HomePageViewModel>(
       create: (_) => HomePageViewModel(),
-      child: const HomePageHeadWidget(),
+      child: HomePageHeadWidget(),
     ),
     ChangeNotifierProvider<AskUsViewModel>(
       create: (_) => AskUsViewModel(),

@@ -65,6 +65,10 @@ class HomePageGridCard extends StatelessWidget {
                     builder: (context) =>
                         LoginPageWidget()));
           }
+          else{
+            _urlLauncher
+                .launchInWebViewWithJavaScript(AppConfig().mahdaviaPageLink);
+          }
         }
       },
       child: Card(

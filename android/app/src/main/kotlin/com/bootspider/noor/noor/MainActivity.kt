@@ -1,4 +1,4 @@
-package com.bootspider.noor.noor
+package com.nooremahdavia
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -7,6 +7,7 @@ import '../../views/HomePage/Widget/home_page_head_container.dart';
 import '../../config.dart';
 import 'package:provider/provider.dart';
 
+
 class HomePageHeadWidget extends StatelessWidget {
   const HomePageHeadWidget({Key? key}) : super(key: key);
 
@@ -16,6 +17,7 @@ class HomePageHeadWidget extends StatelessWidget {
     Provider.of<HomePageViewModel>(context, listen: false).init();
     Provider.of<HomePageViewModel>(context, listen: false).fetchDailyQuizUrl();
     final UrlLauncher _urlLauncher = UrlLauncher();
+    Provider.of<HomePageViewModel>(context, listen: false).fetchLocationDetails();
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(50.0),
@@ -34,16 +36,15 @@ class HomePageHeadWidget extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    const HomePageHeadContainer(
-                        date: 'Wednesday, 15 December',
-                        time: '10:41 AM',
-                        timeDetails: 'Fajr',
-                        dateDetails: '15 Muharram 1443 AH'),
+                    HomePageHeadContainer(
+                        date: homePageModel.readableDate,
+                        time: homePageModel.fajrTimings,
+                        timeDetails: 'Fajr'),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: (){
-                          _urlLauncher.launchInWebViewWithJavaScript(homePageModel.dailyQuizUrl);
+                          _urlLauncher.launchInWebViewWithJavaScript(homePageModel.dailyQuiz[0].quizLink);
                         },
                         child: Card(
                           elevation: 5,
@@ -83,14 +84,27 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Center(
+                                children: [
+                                  const Center(
                                     child: Padding(
                                       padding: EdgeInsets.only(top: 50.0),
                                       child: Text(
                                         'Daily Quiz',
                                         textAlign: TextAlign.left,
                                         style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 50.0),
+                                      child: Text(
+                                        homePageModel.dailyQuiz.isNotEmpty ? homePageModel.dailyQuiz[0].quizName : '',
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.normal,
                                             fontSize: 20),
