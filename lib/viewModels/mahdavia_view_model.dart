@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:noor/models/masjid_model.dart';
 import 'package:noor/services/mahdavia_service.dart';
 import '../helpers/error_handler.dart';
-import '../models/calender_model.dart';
 import '../helpers/enum.dart';
 
 class MahdaviaViewModel extends ChangeNotifier{

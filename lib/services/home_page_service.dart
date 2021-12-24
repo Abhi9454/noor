@@ -1,9 +1,4 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:noor/models/book_model.dart';
-import 'package:noor/models/calender_model.dart';
-import 'package:noor/models/product_model.dart';
 import 'package:noor/models/quiz_model.dart';
 import '../helpers/error_handler.dart';
 import '../config.dart';

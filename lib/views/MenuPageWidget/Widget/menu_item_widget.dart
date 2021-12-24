@@ -4,8 +4,6 @@ import 'package:noor/viewModels/contact_us_view_model.dart';
 import 'package:noor/viewModels/library_view_model.dart';
 import 'package:noor/views/ContactUsPage/contact_us_page_widget.dart';
 import 'package:noor/views/LibraryPageWidget/library_page_widget.dart';
-import '../../../viewModels/masjid_location_view_model.dart';
-import '../../MasjidLocationPage/masjid_location_page_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../config.dart';

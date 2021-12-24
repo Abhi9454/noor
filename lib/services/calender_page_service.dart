@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:noor/models/calender_model.dart';
 import '../helpers/error_handler.dart';
@@ -18,7 +16,6 @@ class CalenderPageService {
       List<CalenderModel> _list = res
           .map<CalenderModel>((json) => CalenderModel.fromJson(json))
           .toList();
-      print(_list.length.toString());
       return _list;
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||

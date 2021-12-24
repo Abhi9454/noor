@@ -20,7 +20,6 @@ class LoginPageWidget extends StatelessWidget {
       child: Consumer<LoginPageViewModel>(
         builder: (con, model, _) {
           if (model.loginStatus == LoginStatus.success) {
-            print('in loop');
             return const NavigationTab();
           } else {
             return Scaffold(
