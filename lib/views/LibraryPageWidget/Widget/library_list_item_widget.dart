@@ -61,9 +61,9 @@ class LibraryListItemWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
             child: ElevatedButton(
               onPressed: () {
-                _urlLauncher.launchInWebViewWithJavaScript(bookLink);
+                _urlLauncher.launchURL(bookLink);
               },
-              child: const Text('Request to Buy'),
+              child: const Text('Read'),
               style: ElevatedButton.styleFrom(
                   primary: AppConfig().primaryColor),
             ),

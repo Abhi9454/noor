@@ -11,6 +11,7 @@ class RegisterPageViewModel extends ChangeNotifier {
   RegisterStatus _registerStatus = RegisterStatus.pending;
   final UserDetailsSet setUser = UserDetailsSet();
   late String registerErrorMessage;
+  String ahle = 'Select Ahle Khandan';
 
   RegisterStatus get registerStatus => _registerStatus;
 
@@ -38,6 +39,11 @@ class RegisterPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  setAhleValue(String ahle){
+    this.ahle = ahle;
+    notifyListeners();
+  }
+
   late ShowError _error;
 
   ShowError get error => _error;
@@ -47,11 +53,10 @@ class RegisterPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  register(String name, String dob, String email, String password, String ahle,
+  register(String name, String dob, String email, String password,
       String murshidName, String masjidName) async {
     try {
       _registerStatus = RegisterStatus.loading;
-      notifyListeners();
       _setUserDetails(await _registerService.register(
           name, dob, email, password, ahle, murshidName, masjidName));
     } on ShowError catch (error) {

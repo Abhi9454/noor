@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:noor/models/book_model.dart';
@@ -12,9 +11,12 @@ class BookPageService {
   Future<List<BookModel>> fetchBooks() async {
     try {
       final Response<dynamic> response = await httpService.requestSource(
-          AppConfig().bookApiLink, 'POST');
-      var _books = jsonDecode(response.data);
-      return (_books['data']);
+          AppConfig().apiUrl + '/book.php', 'POST');
+      var json = response.data as Map<String,dynamic>;
+      var res = json['data'] as List;
+      print(res[0].toString());
+      List<BookModel> _list = res.map<BookModel>((json) => BookModel.fromJson(json)).toList();
+      return _list;
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||
           error.type == DioErrorType.connectTimeout) {

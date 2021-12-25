@@ -58,7 +58,7 @@ class StorePageWidget extends StatelessWidget {
                                   childAspectRatio:
                                       MediaQuery.of(context).size.width /
                                           (MediaQuery.of(context).size.height /
-                                              1.20),
+                                              1.10),
                                   crossAxisSpacing: 1.0,
                                   mainAxisSpacing: 1.0,
                                 ),

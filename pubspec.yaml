@@ -5,7 +5,7 @@ description: A new Flutter project.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.0+1
+version: 2.0.0+11
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -31,6 +31,7 @@ dev_dependencies:
   shared_preferences: ^2.0.9
   location: ^4.2.0
   intl: ^0.17.0
+  flutter_datetime_picker: ^1.5.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

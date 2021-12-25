@@ -6,6 +6,7 @@ class AppConfig{
   final Color primaryColor = const Color(0XFF1f7233);
   final String askUsPageHeading = 'Ask Us';
   final String storePageHeading = 'E-Store';
+  final String libraryPageHeading = 'Library';
   final String menuPageHeading = 'Menu';
   final String loginPageHeading = 'Welcome';
   final String masjidLocationPageHeading = 'Masjid';

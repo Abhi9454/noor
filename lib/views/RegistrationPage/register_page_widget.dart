@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:noor/helpers/enum.dart';
-import '../../main.dart';
-import '../../viewModels/register_page_view_controller.dart';
-import '../../views/LoginPage/login_page_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../config.dart';
+import '../../main.dart';
+import '../../viewModels/register_page_view_controller.dart';
+import '../../views/LoginPage/login_page_widget.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 
 class RegisterPageWidget extends StatelessWidget {
   RegisterPageWidget({Key? key}) : super(key: key);
@@ -17,7 +19,6 @@ class RegisterPageWidget extends StatelessWidget {
   final TextEditingController murshidNameController = TextEditingController();
   final TextEditingController masjidNameController = TextEditingController();
 
-  final String ahle = 'Select Ahle Khandan';
 
   @override
   Widget build(BuildContext context) {
@@ -137,30 +138,63 @@ class RegisterPageWidget extends StatelessWidget {
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0,
-                                          right: 10,
-                                          top: 5.0,
-                                          bottom: 5.0),
-                                      child: TextFormField(
-                                        autofocus: false,
-                                        controller: dobController,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 18),
-                                        decoration: const InputDecoration(
-                                            hintText: 'dd/mm/yyyy',
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 0.0),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 15.0,
+                                              right: 10,
+                                              top: 5.0,
+                                              bottom: 5.0),
+                                          child: SizedBox(
+                                            width: MediaQuery.of(context).size.width * 0.6,
+                                            child: TextFormField(
+                                              autofocus: false,
+                                              enabled: false,
+                                              controller: dobController,
+                                              style: const TextStyle(
+                                                  color: Colors.black, fontSize: 18),
+                                              decoration: const InputDecoration(
+                                                  hintText: 'dd/mm/yyyy',
+                                                  contentPadding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                                                  enabledBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 0.0),
+                                                  ),
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 0.0),
+                                                  )),
                                             ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 0.0),
-                                            )),
-                                      ),
+                                          ),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            DatePicker.showDatePicker(context,
+                                                showTitleActions: true,
+                                                minTime: DateTime(1945 , 3, 5),
+                                                maxTime: DateTime(2045 , 7, 7),
+                                                onConfirm: (date) {
+                                                  String formattedDate = DateFormat('dd/MM/yyyy').format(date);
+                                                  dobController.text = formattedDate;
+                                                },
+                                                currentTime: DateTime.now(),
+                                                locale: LocaleType.en);
+                                          },
+                                          child: const Text('Select Date'),
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                              BorderRadius.circular(5.0),
+                                            ),
+                                            padding: const EdgeInsets.all(15),
+                                            primary: AppConfig().primaryColor,
+                                          ),
+                                        ),
+
+                                      ],
                                     ),
                                     const SizedBox(
                                       height: 20,
@@ -171,7 +205,7 @@ class RegisterPageWidget extends StatelessWidget {
                                       child: DropdownButton<String>(
                                         isExpanded: true,
                                         focusColor: Colors.white,
-                                        value: ahle,
+                                        value: registerModel.ahle,
                                         //elevation: 5,
                                         style: const TextStyle(
                                             color: Colors.white),
@@ -195,7 +229,10 @@ class RegisterPageWidget extends StatelessWidget {
                                         }).toList(),
                                         onChanged: (String? newValue) {
                                           if (newValue! !=
-                                              'Select Ahle Khandan') {}
+                                              'Select Ahle Khandan') {
+                                            registerModel
+                                                .setAhleValue(newValue);
+                                          }
                                         },
                                         hint: const Text(
                                           'Select Ahle Khandan',
@@ -217,7 +254,7 @@ class RegisterPageWidget extends StatelessWidget {
                                           bottom: 5.0),
                                       child: TextFormField(
                                         autofocus: false,
-                                        controller: emailController,
+                                        controller: murshidNameController,
                                         style: const TextStyle(
                                             color: Colors.black, fontSize: 18),
                                         decoration: const InputDecoration(
@@ -245,7 +282,7 @@ class RegisterPageWidget extends StatelessWidget {
                                           bottom: 5.0),
                                       child: TextFormField(
                                         autofocus: false,
-                                        controller: emailController,
+                                        controller: masjidNameController,
                                         style: const TextStyle(
                                             color: Colors.black, fontSize: 18),
                                         decoration: const InputDecoration(
@@ -272,7 +309,8 @@ class RegisterPageWidget extends StatelessWidget {
                                         onPressed: () {
                                           if (nameController.text.isNotEmpty &&
                                               emailController.text.isNotEmpty &&
-                                              ahle != 'Select Ahle Khandan' &&
+                                              registerModel.ahle !=
+                                                  'Select Ahle Khandan' &&
                                               masjidNameController
                                                   .text.isNotEmpty &&
                                               masjidNameController
@@ -283,7 +321,6 @@ class RegisterPageWidget extends StatelessWidget {
                                                 dobController.text,
                                                 emailController.text,
                                                 passwordController.text,
-                                                ahle,
                                                 murshidNameController.text,
                                                 masjidNameController.text);
                                           } else {
@@ -315,12 +352,7 @@ class RegisterPageWidget extends StatelessWidget {
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.3,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
+                                    Center(
                                       child: GestureDetector(
                                         onTap: () {
                                           Navigator.push(
@@ -331,7 +363,7 @@ class RegisterPageWidget extends StatelessWidget {
                                         },
                                         child: const Text('Sign In'),
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),

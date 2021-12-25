@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noor/config.dart';
-import 'package:noor/helpers/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StoreListItemWidget extends StatelessWidget {
   StoreListItemWidget({required this.imageLink, required this.productTitle,required this.productAbout,required this.productItemCode,Key? key}) : super(key: key);
@@ -10,7 +10,13 @@ class StoreListItemWidget extends StatelessWidget {
   final String productAbout;
   final String productItemCode;
 
-  final UrlLauncher _urlLauncher = UrlLauncher();
+  openApplication(String productCode) async{
+    var whatsapp ='+917027051051';
+    var androidUrl = 'whatsapp://send?phone='+whatsapp+'&text='+productCode;
+    if (await canLaunch(androidUrl)) {
+      await launch(androidUrl);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +65,7 @@ class StoreListItemWidget extends StatelessWidget {
             padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
             child: ElevatedButton(
               onPressed: () {
-                _urlLauncher.launchInWebViewWithJavaScript('https://api.whatsapp.com/send/?phone=917027051051&text='+productItemCode);
+                openApplication(productItemCode);
               },
               child: const Text('Request to Buy'),
               style: ElevatedButton.styleFrom(

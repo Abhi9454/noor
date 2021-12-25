@@ -56,7 +56,7 @@ class _NavigationTabState extends State<NavigationTab> {
     ),
     ChangeNotifierProvider<MenuViewModel>(
       create: (_) => MenuViewModel(),
-      child: const MenuPageWidget(),
+      child: MenuPageWidget(),
     ),
   ];
 

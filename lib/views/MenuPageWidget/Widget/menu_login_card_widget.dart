@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noor/views/LoginPage/login_page_widget.dart';
 class MenuLoginCardWidget extends StatelessWidget {
   const MenuLoginCardWidget({Key? key}) : super(key: key);
 
@@ -7,11 +8,11 @@ class MenuLoginCardWidget extends StatelessWidget {
     return SizedBox(
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (context) =>
-          //             RegisterPageWidget()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      LoginPageWidget()));
         },
         child: Card(
           color: Colors.white,
@@ -34,7 +35,7 @@ class MenuLoginCardWidget extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              'Click to edit profile',
+              'Click to Login',
               style: Theme.of(context).textTheme.bodyText1,
             ),
             dense: true,

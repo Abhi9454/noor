@@ -100,10 +100,10 @@ class HomePageHeadWidget extends StatelessWidget {
                                   ),
                                   Center(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(top: 50.0),
+                                      padding: const EdgeInsets.only(top: 50.0, left: 10, right: 10),
                                       child: Text(
                                         homePageModel.dailyQuiz.isNotEmpty ? homePageModel.dailyQuiz[0].quizName : '',
-                                        textAlign: TextAlign.left,
+                                        textAlign: TextAlign.center,
                                         style: const TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.normal,
