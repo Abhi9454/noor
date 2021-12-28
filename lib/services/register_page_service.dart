@@ -18,11 +18,12 @@ class RegisterService {
         'murshidname' : userMurshidName,
         'masjidname' : userMasjidName,
         'status' : 'Approve',
-        'userType' : 'User'
+        'usertype' : 'User'
       };
       final Response<dynamic> response =
       await httpService.requestSource(
           AppConfig().apiUrl + '/registration.php', 'POST', data: map);
+      print(response.data.toString());
       return response.data as Map<String,dynamic>;
     } on DioError catch (error) {
       if (error.type == DioErrorType.receiveTimeout ||

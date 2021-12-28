@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:noor/views/RegistrationPage/register_page_widget.dart';
-import '../../helpers/enum.dart';
-import '../../main.dart';
-import '../../viewModels/login_page_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../config.dart';
+import '../../helpers/enum.dart';
+import '../../main.dart';
+import '../../viewModels/login_page_view_model.dart';
 
 class LoginPageWidget extends StatelessWidget {
   LoginPageWidget({Key? key}) : super(key: key);
@@ -164,7 +164,10 @@ class LoginPageWidget extends StatelessWidget {
                                                   .size
                                                   .width *
                                               0.05,
-                                          child: const Text('Forget Password',textAlign: TextAlign.center,)),
+                                          child: const Text(
+                                            'Forget Password',
+                                            textAlign: TextAlign.center,
+                                          )),
                                     ),
                                     const SizedBox(
                                       height: 15,
@@ -184,19 +187,22 @@ class LoginPageWidget extends StatelessWidget {
                                         height:
                                             MediaQuery.of(context).size.width *
                                                 0.05,
-                                        child: const Text('Sign Up',textAlign: TextAlign.center,),
+                                        child: const Text(
+                                          'Sign Up',
+                                          textAlign: TextAlign.center,
+                                        ),
                                       ),
                                     ),
                                     model.loginStatus == LoginStatus.failed
                                         ? const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
                                               'Login Failed. Try again',
                                               style: TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 18),
                                             ),
-                                        )
+                                          )
                                         : model.loginStatus == LoginStatus.error
                                             ? Text(
                                                 model.error.message,

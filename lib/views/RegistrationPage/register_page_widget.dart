@@ -28,7 +28,8 @@ class RegisterPageWidget extends StatelessWidget {
         builder: (con, registerModel, _) {
           if (registerModel.registerStatus == RegisterStatus.success) {
             return const NavigationTab();
-          } else {
+          }
+          else {
             return Scaffold(
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(50.0),
@@ -147,7 +148,7 @@ class RegisterPageWidget extends StatelessWidget {
                                               top: 5.0,
                                               bottom: 5.0),
                                           child: SizedBox(
-                                            width: MediaQuery.of(context).size.width * 0.6,
+                                            width: MediaQuery.of(context).size.width * 0.50,
                                             child: TextFormField(
                                               autofocus: false,
                                               enabled: false,
@@ -364,6 +365,9 @@ class RegisterPageWidget extends StatelessWidget {
                                         child: const Text('Sign In'),
                                       ),
                                     ),
+                                    registerModel.registerStatus == RegisterStatus.failed ?
+                                        const Text('Something went wrong', style: TextStyle(color: Colors.red),)
+                                        : const SizedBox()
                                   ],
                                 ),
                               ),

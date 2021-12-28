@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:noor/helpers/error_handler.dart';
 import 'package:noor/helpers/set_user_details.dart';
+import 'package:noor/models/user_model.dart';
 import '../helpers/enum.dart';
 import '../services/register_page_service.dart';
 
@@ -26,14 +27,15 @@ class RegisterPageViewModel extends ChangeNotifier {
       registerErrorMessage = _userDetails['message'];
       log('userDetails after error'+ _userDetails.toString());
     } else {
+      List<UserModel> list = ((_userDetails['data'] as List).map((i) => UserModel.fromJson(i)).toList());
       setUser.setUserDetails(
-          _userDetails['id'],
-          _userDetails['fullname'],
-          _userDetails['emailid'],
-          _userDetails['dob'],
-          _userDetails['ahle'],
-          _userDetails['murshidname'],
-          _userDetails['masjidname']);
+          list[0].userId,
+          list[0].userFullName,
+          list[0].userEmail,
+          list[0].userDob,
+          list[0].userAhle,
+          list[0].userMurshidName,
+          list[0].userMasjidName);
       _registerStatus = RegisterStatus.success;
     }
     notifyListeners();
