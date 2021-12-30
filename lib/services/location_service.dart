@@ -12,8 +12,9 @@ class LocationService{
 
   Future<Welcome> fetchLocationDetails(String date,String latitude, String longitude) async {
     try {
+      String queryString = 'https://api.aladhan.com/v1/timings/'+date+'?latitude='+latitude+'&longitude='+longitude;
       final Response<dynamic> response = await httpService.requestSource(
-         'https://api.aladhan.com/v1/timings/'+date+'?latitude='+latitude+'&longitude='+longitude, 'GET');
+         queryString , 'GET');
       final json = welcomeFromJson(jsonEncode(response.data));
       return json;
     } on DioError catch (error) {

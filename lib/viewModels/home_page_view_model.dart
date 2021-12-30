@@ -121,6 +121,7 @@ class HomePageViewModel extends ChangeNotifier{
       _welcome = await _locationService.fetchLocationDetails(formattedDate, _locationData!.latitude.toString(), _locationData!.longitude.toString());
       fajrTimings = _welcome.data.timings.fajr;
       readableDate = _welcome.data.date.readable;
+      maghribTimings = _welcome.data.timings.maghrib;
       _status = Status.success;
     } on ShowError catch (error) {
       _status = Status.error;
