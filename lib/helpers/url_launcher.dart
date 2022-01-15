@@ -4,8 +4,8 @@ class UrlLauncher {
   launchInWebViewWithJavaScript(String url) async {
     if (!await launch(
       url,
-      forceSafariVC: true,
-      forceWebView: true,
+      forceSafariVC: false,
+      forceWebView: false,
       enableJavaScript: true,
     )) {
       throw 'Could not launch $url';
