@@ -53,14 +53,12 @@ class LibraryPageWidget extends StatelessWidget {
                               scrollDirection: Axis.vertical,
                               child: GridView.builder(
                                 gridDelegate:
-                                    SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 200,
-                                  childAspectRatio:
-                                      MediaQuery.of(context).size.width /
-                                          (MediaQuery.of(context).size.height /
-                                              1.15),
-                                  crossAxisSpacing: 1.0,
-                                  mainAxisSpacing: 1.0,
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: MediaQuery.of(context).size.width /
+                                      (MediaQuery.of(context).size.height / 1.1),
+                                  mainAxisSpacing: 10.0,
+                                  crossAxisSpacing: 10.0,
                                 ),
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,

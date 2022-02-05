@@ -19,6 +19,12 @@ class CalenderPageWidget extends StatelessWidget {
           title: Text(AppConfig().calenderPageHeading),
           centerTitle: true,
           backgroundColor: AppConfig().primaryColor,
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
         ),
       ),
       body: Consumer<CalenderViewModel>(

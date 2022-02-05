@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noor/viewModels/menu_view_model.dart';
+import 'package:noor/views/DailyPrayerPageWidget/daily_prayer_page_widget.dart';
 import 'viewModels/store_page_view_model.dart';
 import 'views/StorePage/store_page_widget.dart';
 import 'views/MenuPageWidget/menu_page_widget.dart';
@@ -20,17 +21,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: AppConfig().appName,
-      home: MultiProvider(providers: [
-        ChangeNotifierProvider(create: (context) => HomePageViewModel()),
-      ],
-        child: const NavigationTab(),
-      )
-    );
+        debugShowCheckedModeBanner: false,
+        title: AppConfig().appName,
+        home: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (context) => HomePageViewModel()),
+          ],
+          child: const NavigationTab(),
+        ));
   }
 }
-
 
 class NavigationTab extends StatefulWidget {
   const NavigationTab({Key? key}) : super(key: key);
@@ -46,18 +46,15 @@ class _NavigationTabState extends State<NavigationTab> {
       create: (_) => HomePageViewModel(),
       child: const HomePageHeadWidget(),
     ),
-    ChangeNotifierProvider<AskUsViewModel>(
-      create: (_) => AskUsViewModel(),
-      child: AskUsPageWidget(),
-    ),
     ChangeNotifierProvider<StorePageViewModel>(
       create: (_) => StorePageViewModel(),
       child: const StorePageWidget(),
     ),
-    ChangeNotifierProvider<MenuViewModel>(
-      create: (_) => MenuViewModel(),
-      child: MenuPageWidget(),
+    ChangeNotifierProvider<AskUsViewModel>(
+      create: (_) => AskUsViewModel(),
+      child: AskUsPageWidget(),
     ),
+    const DailyPrayerPageWidget(),
   ];
 
   void onTabTapped(int index) {
@@ -85,16 +82,16 @@ class _NavigationTabState extends State<NavigationTab> {
               label: 'Home',
               backgroundColor: AppConfig().primaryColor),
           BottomNavigationBarItem(
+              icon: const Icon(Icons.shopping_bag),
+              label: 'E-Store',
+              backgroundColor: AppConfig().primaryColor),
+          BottomNavigationBarItem(
               icon: const Icon(Icons.support_agent),
               label: 'Ask Us',
               backgroundColor: AppConfig().primaryColor),
           BottomNavigationBarItem(
-              icon: const Icon(Icons.shopping_cart),
-              label: 'E-Store',
-              backgroundColor: AppConfig().primaryColor),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.menu),
-              label: 'Menu',
+              icon: const Icon(Icons.drag_handle_sharp),
+              label: 'Daily Prayers',
               backgroundColor: AppConfig().primaryColor),
         ],
       ),

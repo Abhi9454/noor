@@ -21,58 +21,58 @@ class StoreListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 1,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-            child: Image.network(
+      elevation: 2,
+      child: SizedBox(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.network(
                imageLink,
               fit: BoxFit.contain,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.2,
             ),
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
-              child: Text(
-                productTitle  ,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    color: AppConfig().primaryColor,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 18),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
+                child: Text(
+                  productTitle  ,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: AppConfig().primaryColor,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 18),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4.0,left: 8.0, right: 8.0),
-            child: Text(
-              productAbout,
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 13),
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0,left: 8.0, right: 8.0),
+              child: Text(
+                productAbout,
+                textAlign: TextAlign.left,
+                style: const TextStyle(
+                    color: Colors.black54,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 13),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
-            child: ElevatedButton(
-              onPressed: () {
-                openApplication(productItemCode);
-              },
-              child: const Text('Request to Buy'),
-              style: ElevatedButton.styleFrom(
-                  primary: AppConfig().primaryColor),
+            Padding(
+              padding: const EdgeInsets.only(top: 6.0,left: 8.0, right: 8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  openApplication(productItemCode);
+                },
+                child: const Text('Request to Buy'),
+                style: ElevatedButton.styleFrom(
+                    primary: AppConfig().primaryColor),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

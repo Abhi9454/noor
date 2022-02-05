@@ -110,7 +110,7 @@ class HomePageGridCard extends StatelessWidget {
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
-                      fontSize: 25),
+                      fontSize: 14),
                 ),
               ),
             )

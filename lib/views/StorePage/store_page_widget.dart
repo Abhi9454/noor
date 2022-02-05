@@ -51,23 +51,32 @@ class StorePageWidget extends StatelessWidget {
                       : storePageModel.status == Status.success
                           ? SingleChildScrollView(
                               scrollDirection: Axis.vertical,
-                              child: GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 200,
-                                  childAspectRatio:
-                                      MediaQuery.of(context).size.width /
-                                          (MediaQuery.of(context).size.height /
-                                              1.10),
-                                  crossAxisSpacing: 1.0,
-                                  mainAxisSpacing: 1.0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: GridView.builder(
+                                  gridDelegate:
+                                       SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                        childAspectRatio: MediaQuery.of(context).size.width /
+                                            (MediaQuery.of(context).size.height / 1),
+                                        mainAxisSpacing: 10.0,
+                                        crossAxisSpacing: 10.0,
+                                      ),
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: storePageModel.products.length,
+                                  itemBuilder: (BuildContext ctx, index) {
+                                    return StoreListItemWidget(
+                                        imageLink: storePageModel
+                                            .products[index].productImage,
+                                        productTitle: storePageModel
+                                            .products[index].productTitle,
+                                        productAbout: storePageModel
+                                            .products[index].productAbout,
+                                        productItemCode: storePageModel
+                                            .products[index].productItemCode);
+                                  },
                                 ),
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: storePageModel.products.length,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return StoreListItemWidget(imageLink: storePageModel.products[index].productImage, productTitle: storePageModel.products[index].productTitle, productAbout: storePageModel.products[index].productAbout, productItemCode: storePageModel.products[index].productItemCode);
-                                },
                               ),
                             )
                           : const SizedBox();

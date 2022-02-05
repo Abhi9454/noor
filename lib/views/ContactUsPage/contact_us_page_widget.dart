@@ -21,6 +21,12 @@ class ContactUsPageWidget extends StatelessWidget {
           title: Text(AppConfig().contactUsPageHeading),
           centerTitle: true,
           backgroundColor: AppConfig().primaryColor,
+          leading: IconButton(
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
         ),
       ),
       body: SizedBox(
