@@ -3,7 +3,7 @@ import 'package:noor/config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StoreListItemWidget extends StatelessWidget {
-  StoreListItemWidget({required this.imageLink, required this.productTitle,required this.productAbout,required this.productItemCode,Key? key}) : super(key: key);
+  const StoreListItemWidget({required this.imageLink, required this.productTitle,required this.productAbout,required this.productItemCode,Key? key}) : super(key: key);
 
   final String imageLink;
   final String productTitle;

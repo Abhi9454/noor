@@ -14,7 +14,6 @@ class BookPageService {
           AppConfig().apiUrl + '/book.php', 'POST');
       var json = response.data as Map<String,dynamic>;
       var res = json['data'] as List;
-      print(res[0].toString());
       List<BookModel> _list = res.map<BookModel>((json) => BookModel.fromJson(json)).toList();
       return _list;
     } on DioError catch (error) {

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:noor/viewModels/calender_view_model.dart';
+import 'package:noor/viewModels/mahdavia_view_model.dart';
 import 'package:noor/views/CalenderPage/calender_page_widget.dart';
+import 'package:noor/views/MahdaviaPage/mahdavia_page_widget.dart';
+import 'package:noor/views/MemorizePage/memorize_page_widget.dart';
+import 'package:noor/views/PillarsOfIslamPage/pillars_of_islam_page_widget.dart';
 import '../../../config.dart';
 import '../../../helpers/enum.dart';
 import '../../../helpers/url_launcher.dart';
@@ -11,7 +15,7 @@ import 'package:provider/provider.dart';
 class HomePageGridCard extends StatelessWidget {
   HomePageGridCard(
       {required this.homePageModel,
-        required this.cardLink,
+      required this.cardLink,
       required this.imageName,
       required this.cardName,
       required this.colorOne,
@@ -31,44 +35,45 @@ class HomePageGridCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (cardLink == 'PillarIslam') {
-          _urlLauncher
-              .launchInWebViewWithJavaScript(AppConfig().pillarsOfIslam);
-        }
-        else if(cardLink == 'Calender'){
-           if(homePageModel.userStatus == HomePageUserStatus.userNotVerified){
-             Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                     builder: (context) =>
-                         LoginPageWidget()));
-           }
-           else{
-
-             Navigator.push(
-                 context,
-                 MaterialPageRoute(
-                     builder: (context) => MultiProvider(providers: <
-                         ChangeNotifierProvider<
-                             CalenderViewModel>>[
-                       ChangeNotifierProvider<CalenderViewModel>(
-                           create: (_) => CalenderViewModel())
-                     ], child: const CalenderPageWidget())));
-           }
-        }
-
-        else if(cardLink == 'Organisations'){
-          if(homePageModel.userStatus == HomePageUserStatus.userNotVerified){
+      if (cardLink == 'Calender') {
+          if (homePageModel.userStatus == HomePageUserStatus.userNotVerified) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginPageWidget()));
+          } else {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        LoginPageWidget()));
+                    builder: (context) => MultiProvider(providers: <
+                            ChangeNotifierProvider<CalenderViewModel>>[
+                          ChangeNotifierProvider<CalenderViewModel>(
+                              create: (_) => CalenderViewModel())
+                        ], child: const CalenderPageWidget())));
           }
-          else{
-            _urlLauncher
-                .launchInWebViewWithJavaScript(AppConfig().mahdaviaPageLink);
+        } else if (cardLink == 'Organisations') {
+          if (homePageModel.userStatus == HomePageUserStatus.userNotVerified) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginPageWidget()));
+          } else {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MultiProvider(providers: <
+                            ChangeNotifierProvider<MahdaviaViewModel>>[
+                          ChangeNotifierProvider<MahdaviaViewModel>(
+                              create: (_) => MahdaviaViewModel())
+                        ], child: const MahdaviaPageWidget())));
           }
+        } else if (cardLink == 'PillarIslam') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PillarsOfIslamPageWidget()));
+        }
+        else if (cardLink == 'Memorize') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MemorizePageWidget()));
         }
       },
       child: Card(

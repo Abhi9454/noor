@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:noor/helpers/enum.dart';
 import 'package:noor/helpers/url_launcher.dart';
-import 'package:noor/viewModels/ask_us_view_model.dart';
+import 'package:noor/viewModels/audio_view_model.dart';
+import 'package:noor/viewModels/dua_view_model.dart';
 import 'package:noor/viewModels/library_view_model.dart';
-import 'package:noor/views/AskUsPage/ask_us_page_widget.dart';
+import 'package:noor/viewModels/masjid_location_view_model.dart';
+import 'package:noor/viewModels/news_view_model.dart';
+import 'package:noor/viewModels/quran_view_model.dart';
+import 'package:noor/viewModels/ritual_view_model.dart';
+import 'package:noor/viewModels/video_view_model.dart';
+import 'package:noor/views/AboutPage/about_page_widget.dart';
+import 'package:noor/views/AudioPage/audio_page_widget.dart';
 import 'package:noor/views/ContactUsPage/contact_us_page_widget.dart';
+import 'package:noor/views/DailyPrayerPage/daily_prayer_page_widget.dart';
+import 'package:noor/views/DuaModel/dua_page_widget.dart';
 import 'package:noor/views/LibraryPageWidget/library_page_widget.dart';
 import 'package:noor/views/LoginPage/login_page_widget.dart';
+import 'package:noor/views/MasjidLocationPage/masjid_location_page_widget.dart';
+import 'package:noor/views/NewsPage/news_page_widget.dart';
+import 'package:noor/views/NibuwatPage/nibuwat_page_widget.dart';
+import 'package:noor/views/NiyyatPage/niyyat_page_widget.dart';
+import 'package:noor/views/QuranPage/quran_page_widget.dart';
 import 'package:noor/views/RegistrationPage/register_page_widget.dart';
+import 'package:noor/views/RitualPage/ritual_page_widget.dart';
+import 'package:noor/views/SeeratPageWidget/seerat_page_widget.dart';
+import 'package:noor/views/VideoPage/video_page_widget.dart';
+import 'package:noor/views/VilayyatPage/vilayyat_page_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../config.dart';
@@ -61,14 +79,14 @@ class HomePageHeadWidget extends StatelessWidget {
                     : const SizedBox(),
                 homePageModel.userStatus == HomePageUserStatus.userNotVerified
                     ? IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegisterPageWidget()));
-                  },
-                  icon: const Icon(Icons.phone_android),
-                )
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RegisterPageWidget()));
+                        },
+                        icon: const Icon(Icons.phone_android),
+                      )
                     : const SizedBox(),
               ],
             ),
@@ -105,7 +123,11 @@ class HomePageHeadWidget extends StatelessWidget {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  openInWebView(AppConfig().aboutUsPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const AboutPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,8 +154,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().newsPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          NewsViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            NewsViewModel>(
+                                                        create: (_) =>
+                                                            NewsViewModel())
+                                                  ],
+                                                  child:
+                                                      const NewsPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -160,8 +194,11 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().faraizPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const NabuwatPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -188,8 +225,11 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().vilayatPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const VilayyatPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -216,8 +256,11 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().niyatsPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const NiyyatPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -244,8 +287,11 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().seeratPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const SeeratPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -272,8 +318,18 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().mashjidLocationPage);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MultiProvider(providers: <
+                                                  ChangeNotifierProvider<
+                                                      MasjidLocationViewModel>>[
+                                                ChangeNotifierProvider<
+                                                        MasjidLocationViewModel>(
+                                                    create: (_) =>
+                                                        MasjidLocationViewModel())
+                                              ], child: const MasjidLocationPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -301,8 +357,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      'https://nooremahdavia.com/audio.php');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          AudioViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            AudioViewModel>(
+                                                        create: (_) =>
+                                                            AudioViewModel())
+                                                  ],
+                                                  child:
+                                                      const AudioPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -329,8 +397,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      'https://nooremahdavia.com/visual.php');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          VideoViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            VideoViewModel>(
+                                                        create: (_) =>
+                                                            VideoViewModel())
+                                                  ],
+                                                  child:
+                                                      const VideoPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -357,8 +437,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      'https://nooremahdavia.com/dua.php');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          DuaViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            DuaViewModel>(
+                                                        create: (_) =>
+                                                            DuaViewModel())
+                                                  ],
+                                                  child:
+                                                      const DuaPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -386,8 +478,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      AppConfig().ritualPageLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          RitualViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            RitualViewModel>(
+                                                        create: (_) =>
+                                                            RitualViewModel())
+                                                  ],
+                                                  child:
+                                                      const RitualPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -414,8 +518,20 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  _urlLauncher.launchInWebViewWithJavaScript(
-                                      'https://nooremahdavia.com/quran.php');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MultiProvider(
+                                                  providers: <
+                                                      ChangeNotifierProvider<
+                                                          QuranViewModel>>[
+                                                    ChangeNotifierProvider<
+                                                            QuranViewModel>(
+                                                        create: (_) =>
+                                                            QuranViewModel())
+                                                  ],
+                                                  child:
+                                                      const QuranPageWidget())));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -513,7 +629,10 @@ class HomePageHeadWidget extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  openInWebView(AppConfig().dailyPrayerLink);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const DailyPrayerPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -660,7 +779,7 @@ class HomePageHeadWidget extends StatelessWidget {
                                   colorSecond: Colors.black.withOpacity(0.8)),
                               HomePageGridCard(
                                   homePageModel: homePageModel,
-                                  cardLink: '',
+                                  cardLink: 'Memorize',
                                   imageName: 'images/memorize.jpg',
                                   cardName: 'Memorize',
                                   colorOne: Colors.yellow.withOpacity(0.25),

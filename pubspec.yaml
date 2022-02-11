@@ -32,6 +32,9 @@ dev_dependencies:
   location: ^4.2.0
   intl: ^0.17.0
   flutter_datetime_picker: ^1.5.1
+  map_launcher: ^2.2.0
+  just_audio: ^0.9.19
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

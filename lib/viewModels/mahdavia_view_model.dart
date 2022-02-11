@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:noor/models/masjid_model.dart';
+import 'package:noor/models/mahdavia_model.dart';
 import 'package:noor/services/mahdavia_service.dart';
 import '../helpers/error_handler.dart';
 import '../helpers/enum.dart';
@@ -15,7 +15,7 @@ class MahdaviaViewModel extends ChangeNotifier{
 
   List<MahdaviaModel> get mahdaviaDetails => _mahdaviaDetails;
 
-  Future<void> _setMahdavia(List<MahdaviaModel> calenderDetails) async {
+  Future<void> _setMahdavia(List<MahdaviaModel> mahdaviaDetails) async {
     _mahdaviaDetails = mahdaviaDetails;
     _status = Status.success;
     notifyListeners();
@@ -30,7 +30,7 @@ class MahdaviaViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  fetchCalender() async {
+  fetchMahdavia() async {
     try {
       _status = Status.loading;
       _setMahdavia(await _mahdaviaService.fetch());

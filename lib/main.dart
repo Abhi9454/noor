@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:noor/viewModels/menu_view_model.dart';
-import 'package:noor/views/DailyPrayerPageWidget/daily_prayer_page_widget.dart';
+import 'package:noor/views/DailyPrayerPage/daily_prayer_page_widget.dart';
 import 'viewModels/store_page_view_model.dart';
 import 'views/StorePage/store_page_widget.dart';
-import 'views/MenuPageWidget/menu_page_widget.dart';
 import 'viewModels/ask_us_view_model.dart';
 import 'views/AskUsPage/ask_us_page_widget.dart';
 import 'config.dart';
