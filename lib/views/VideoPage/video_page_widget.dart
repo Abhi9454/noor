@@ -13,8 +13,8 @@ class VideoPageWidget extends StatelessWidget {
   Future<void> _launchInWebViewOrVC(String url) async {
     if (!await launch(
       url,
-      forceSafariVC: true,
-      forceWebView: true,
+      forceSafariVC: false,
+      forceWebView: false,
     )) {
       throw 'Could not launch $url';
     }

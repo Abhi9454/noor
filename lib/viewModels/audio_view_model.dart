@@ -7,6 +7,7 @@ import 'package:noor/services/audio_service.dart';
 class AudioViewModel extends ChangeNotifier{
   final AudioService _audioService = AudioService();
   Status _status = Status.init;
+  bool isPlaying = false;
 
   Status get status => _status;
 
@@ -38,6 +39,11 @@ class AudioViewModel extends ChangeNotifier{
       _status = Status.error;
       _setError(error);
     }
+    notifyListeners();
+  }
+
+  updatePlaying(bool playing){
+    isPlaying = playing;
     notifyListeners();
   }
 }
