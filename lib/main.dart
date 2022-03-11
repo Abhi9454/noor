@@ -52,7 +52,7 @@ class _NavigationTabState extends State<NavigationTab> {
       create: (_) => AskUsViewModel(),
       child: AskUsPageWidget(),
     ),
-    const DailyPrayerPageWidget(),
+    DailyPrayerPageWidget(),
   ];
 
   void onTabTapped(int index) {

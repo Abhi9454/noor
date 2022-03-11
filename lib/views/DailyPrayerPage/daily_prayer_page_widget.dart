@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:native_pdf_view/native_pdf_view.dart';
 import '../../config.dart';
 
 class DailyPrayerPageWidget extends StatelessWidget {
-  const DailyPrayerPageWidget({Key? key}) : super(key: key);
+  DailyPrayerPageWidget({Key? key}) : super(key: key);
+
+  final pdfController = PdfController(
+    document: PdfDocument.openAsset('images/dailyPrayer.pdf'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +20,9 @@ class DailyPrayerPageWidget extends StatelessWidget {
           backgroundColor: AppConfig().primaryColor,
         ),
       ),
-      body: SingleChildScrollView(
+      body:  PdfView(
+        controller: pdfController,
         scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Content Loading..',
-                maxLines: 2,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

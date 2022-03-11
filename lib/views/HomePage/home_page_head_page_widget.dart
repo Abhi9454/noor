@@ -632,7 +632,7 @@ class HomePageHeadWidget extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const DailyPrayerPageWidget()));
+                                          builder: (context) => DailyPrayerPageWidget()));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
