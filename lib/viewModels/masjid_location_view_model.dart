@@ -28,7 +28,7 @@ class MasjidLocationViewModel extends ChangeNotifier {
   _setMarkers() {
     if (masjidDetails.isNotEmpty) {
       for (int i = 0; i < masjidDetails.length; i++) {
-        log(masjidDetails[i].masjidName);
+        log('Lon '+masjidDetails[i].masjidLatitude + masjidDetails[i].masjidLongitude);
         markers.add(
           Marker(
               markerId: MarkerId(masjidDetails[i].masjidId),

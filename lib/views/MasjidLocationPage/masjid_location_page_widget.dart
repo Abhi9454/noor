@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:noor/helpers/enum.dart';
 import 'package:noor/viewModels/masjid_location_view_model.dart';
-import 'package:noor/views/MasjidLocationPage/Widget/masjid_location_list_container.dart';
 import 'package:map_launcher/map_launcher.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as google_map;
 
@@ -35,7 +34,7 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
   }
 
   loadMaps() {
-    Provider.of<MasjidLocationViewModel>(context, listen: false).fetch();
+
   }
 
 
@@ -47,6 +46,7 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<MasjidLocationViewModel>(context, listen: false).fetch();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50.0),
@@ -96,7 +96,7 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
                                     const google_map.CameraPosition(
                                         target:
                                             google_map.LatLng(40.333, -70.66),
-                                        zoom: 12),
+                                        zoom: 2),
                                 onMapCreated: (google_map.GoogleMapController
                                     controller) {
                                   _completer.complete(controller);
