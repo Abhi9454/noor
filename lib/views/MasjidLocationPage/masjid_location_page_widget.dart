@@ -93,17 +93,15 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
                                   log(values.latitude.toString());
                                 },
                                 initialCameraPosition:
-                                    const google_map.CameraPosition(
+                                     google_map.CameraPosition(
                                         target:
-                                            google_map.LatLng(40.333, -70.66),
-                                        zoom: 2),
+                                            google_map.LatLng(masjidModel.markers[1].position.latitude, masjidModel.markers[1].position.latitude),
+                                        zoom: 5),
                                 onMapCreated: (google_map.GoogleMapController
                                     controller) {
                                   _completer.complete(controller);
                                 },
-                                markers: masjidModel.markers
-                                    .map((locations) => locations)
-                                    .toSet(),
+                                markers: Set.from(masjidModel.markers),
                               )
                             : const SizedBox();
           },
