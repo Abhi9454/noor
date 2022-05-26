@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:noor/helpers/enum.dart';
@@ -41,11 +40,11 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
   @override
   void initState() {
     super.initState();
-    loadMaps();
   }
 
   @override
   Widget build(BuildContext context) {
+    //Provider.of<MasjidLocationViewModel>(context, listen: false).loadIcon();
     Provider.of<MasjidLocationViewModel>(context, listen: false).fetch();
     return Scaffold(
       appBar: PreferredSize(
@@ -89,14 +88,11 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
                                 mapType: google_map.MapType.normal,
                                 myLocationButtonEnabled: true,
                                 myLocationEnabled: true,
-                                onTap: (values) {
-                                  log(values.latitude.toString());
-                                },
                                 initialCameraPosition:
-                                     google_map.CameraPosition(
+                                     const google_map.CameraPosition(
                                         target:
-                                            google_map.LatLng(masjidModel.markers[1].position.latitude, masjidModel.markers[1].position.latitude),
-                                        zoom: 5),
+                                            google_map.LatLng(22.7196, 75.8577),
+                                        zoom: 6),
                                 onMapCreated: (google_map.GoogleMapController
                                     controller) {
                                   _completer.complete(controller);
