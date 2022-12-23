@@ -16,7 +16,7 @@ class DuaPageWidget extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50.0),
         child: AppBar(
-          title: Text(AppConfig().ritualPageHeading),
+          title: Text(AppConfig().duaPageHeading),
           centerTitle: true,
           backgroundColor: AppConfig().primaryColor,
         ),
@@ -43,7 +43,7 @@ class DuaPageWidget extends StatelessWidget {
                         ? const SizedBox(
                             child: Center(
                               child: Text(
-                                'No Video Found.',
+                                'No Dua Found.',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),

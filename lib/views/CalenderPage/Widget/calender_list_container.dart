@@ -38,6 +38,13 @@ class CalenderListContainer extends StatelessWidget {
             ),
           ),
         ),
+        trailing: Text(
+          calenderDate,
+          maxLines: 5,
+          textAlign: TextAlign.left,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
+        ),
       ),
     );
   }

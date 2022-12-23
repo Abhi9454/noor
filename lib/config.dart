@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class AppConfig {
   final String appName = 'Noor';
   final String appHeading = 'Noor-e-Mahdavia';
+  final String qiblaHeading = 'Qibla';
   final Color primaryColor = const Color(0XFF1f7233);
   final String askUsPageHeading = 'Ask Us';
   final String storePageHeading = 'E-Store';

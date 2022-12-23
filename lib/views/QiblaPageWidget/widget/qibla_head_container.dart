@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:noor/config.dart';
 
-class HomePageHeadContainer extends StatelessWidget {
-  const HomePageHeadContainer(
+class QiblaHeadContainer extends StatelessWidget {
+  const QiblaHeadContainer(
       {required this.date,
-      required this.time,
-      required this.timeDetails,
+        required this.time,
+        required this.timeDetails,
         required this.maghribTime,
         required this.zuhrTime,
         required this.asrTimings,
         required this.sunset,
         required this.sunrise,
         required this.ishaTimings,
-      Key? key})
+        Key? key})
       : super(key: key);
 
   final String date;
@@ -36,32 +36,25 @@ class HomePageHeadContainer extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6.0),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.38,
-                child: Image(
-                  image: const AssetImage(
-                    'images/head.jpg', //header logo image
-                  ),
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.38,
-                ),
-              ),
-            ),
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(6.0),
+            //   child: SizedBox(
+            //     height: MediaQuery.of(context).size.height * 0.38,
+            //     child: Image(
+            //       image: const AssetImage(
+            //         'images/head.jpg', //header logo image
+            //       ),
+            //       fit: BoxFit.cover,
+            //       width: MediaQuery.of(context).size.width,
+            //       height: MediaQuery.of(context).size.height * 0.38,
+            //     ),
+            //   ),
+            // ),
             ClipRRect(
               borderRadius: BorderRadius.circular(6.0),
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.38,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Colors.black.withOpacity(0.15),
-                        AppConfig().primaryColor
-                      ]),
                 ),
               ),
             ),
@@ -72,7 +65,7 @@ class HomePageHeadContainer extends StatelessWidget {
                   child: Text(
                     date,
                     style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                         fontSize: 20),
                   ),
@@ -89,7 +82,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               timeDetails,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -102,7 +95,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               time,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -115,7 +108,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Zuhr',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -128,7 +121,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               zuhrTime,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -141,7 +134,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Asr',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -154,7 +147,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               asrTimings,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -167,7 +160,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Sunrise',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16),
                             ),
@@ -180,7 +173,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               sunrise,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -198,7 +191,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Maghrib',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -211,7 +204,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               maghribTime,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -224,7 +217,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Isha',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -237,7 +230,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               ishaTimings,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),
@@ -250,7 +243,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               'Sunset',
                               textAlign: TextAlign.left,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.normal,
                                   fontSize: 16),
                             ),
@@ -263,7 +256,7 @@ class HomePageHeadContainer extends StatelessWidget {
                               sunset,
                               textAlign: TextAlign.left,
                               style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20),
                             ),

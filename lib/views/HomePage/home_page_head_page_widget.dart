@@ -29,11 +29,14 @@ import 'package:noor/views/VilayyatPage/vilayyat_page_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../config.dart';
+import '../../viewModels/calender_view_model.dart';
 import '../../viewModels/home_page_view_model.dart';
 import '../../views/HomePage/Widget/home_page_grid_card.dart';
 import '../../views/HomePage/Widget/home_page_head_container.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../CalenderPage/calender_page_widget.dart';
 
 class HomePageHeadWidget extends StatelessWidget {
   const HomePageHeadWidget({Key? key}) : super(key: key);
@@ -55,7 +58,7 @@ class HomePageHeadWidget extends StatelessWidget {
     Provider.of<HomePageViewModel>(context, listen: false).fetchDailyQuizUrl();
     final UrlLauncher _urlLauncher = UrlLauncher();
     Provider.of<HomePageViewModel>(context, listen: false)
-        .fetchLocationDetails();
+        .fetchLocationDetails(context);
     return Consumer<HomePageViewModel>(
       builder: (con, homePageModel, _) {
         return Scaffold(
@@ -106,6 +109,11 @@ class HomePageHeadWidget extends StatelessWidget {
                           time: homePageModel.fajrTimings,
                           timeDetails: 'Fajr',
                           maghribTime: homePageModel.maghribTimings,
+                          zuhrTime: homePageModel.zuhrTimings,
+                          asrTimings: homePageModel.ashTimings,
+                          sunrise: homePageModel.sunriseTimings,
+                          sunset: homePageModel.sunsetTimings,
+                          ishaTimings: homePageModel.ishaTimings,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -199,6 +207,7 @@ class HomePageHeadWidget extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (context) =>
                                           const NabuwatPageWidget()));
+                                 //launchUrl(Uri.parse('https://nooremahdavia.com/nabuwat.php'));
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,6 +239,7 @@ class HomePageHeadWidget extends StatelessWidget {
                                       MaterialPageRoute(
                                           builder: (context) =>
                                           const VilayyatPageWidget()));
+
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -648,6 +658,45 @@ class HomePageHeadWidget extends StatelessWidget {
                                     ),
                                     const Text(
                                       'Daily Prayer',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  if (homePageModel.userStatus == HomePageUserStatus.userNotVerified) {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => LoginPageWidget()));
+                                  } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => MultiProvider(providers: <
+                                                ChangeNotifierProvider<CalenderViewModel>>[
+                                              ChangeNotifierProvider<CalenderViewModel>(
+                                                  create: (_) => CalenderViewModel())
+                                            ], child: const CalenderPageWidget())));
+                                  }
+                                },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FaIcon(
+                                      FontAwesomeIcons.calendar,
+                                      size: 30,
+                                      color: AppConfig().primaryColor,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text(
+                                      'Calendar',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 14,

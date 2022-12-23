@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:noor/helpers/enum.dart';
-import 'package:noor/helpers/error_handler.dart';
-import 'package:noor/models/location_model.dart';
-import 'package:noor/models/quiz_model.dart';
-import 'package:noor/services/home_page_service.dart';
-import 'package:noor/services/location_service.dart';
+
+import '../helpers/enum.dart';
+import '../helpers/error_handler.dart';
 import '../helpers/read_user_details.dart';
+import '../models/location_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/home_page_service.dart';
+import '../services/location_service.dart';
 import 'package:location/location.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart' as permission;
 
-class HomePageViewModel extends ChangeNotifier{
-
+class QiblaViewModel extends ChangeNotifier{
   late SharedPreferences preferences;
   final HomePageService _homePageService = HomePageService();
   final UserDetails _userDetails = UserDetails();
@@ -82,7 +82,6 @@ class HomePageViewModel extends ChangeNotifier{
 
   int totalPendingAmount = 0;
 
-  List<QuizModel> dailyQuiz = [];
 
   Status _status = Status.init;
 
@@ -130,17 +129,6 @@ class HomePageViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  fetchDailyQuizUrl() async{
-    try {
-      _status = Status.loading;
-      dailyQuiz = await _homePageService.fetchDailyQuiz();
-      _status = Status.success;
-    } on ShowError catch (error) {
-    _status = Status.error;
-    _setError(error);
-    }
-    notifyListeners();
-  }
 
 
   fetchLocationDetails(BuildContext context) async{

@@ -22,20 +22,42 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
 
   openMaps(String latitude, String longitude, String name,
       String description) async {
-    if (await MapLauncher.isMapAvailable(MapType.google) != null) {
-      await MapLauncher.showMarker(
-        mapType: MapType.google,
-        coords: Coords(double.parse(latitude), double.parse(longitude)),
-        title: name,
-        description: description,
-      );
-    }
+    // if (await MapLauncher.isMapAvailable(MapType.google) != null) {
+    //   await MapLauncher.showMarker(
+    //     mapType: MapType.google,
+    //     coords: Coords(double.parse(latitude), double.parse(longitude)),
+    //     title: name,
+    //     description: description,
+    //   );
+    // }
+    showModalBottomSheet(
+        context: context,
+        builder: (builder) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.45,
+            color: Colors.transparent, //could change this to Color(0xFF737373),
+            child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        topRight: Radius.circular(10.0))),
+                child: Column(
+                  children: [
+                    Text(
+                      name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                )),
+          );
+        });
   }
 
-  loadMaps() {
-
-  }
-
+  loadMaps() {}
 
   @override
   void initState() {
@@ -45,7 +67,7 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
   @override
   Widget build(BuildContext context) {
     //Provider.of<MasjidLocationViewModel>(context, listen: false).loadIcon();
-    Provider.of<MasjidLocationViewModel>(context, listen: false).fetch();
+    Provider.of<MasjidLocationViewModel>(context, listen: false).fetch(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50.0),
@@ -89,7 +111,7 @@ class _MasjidLocationPageWidgetState extends State<MasjidLocationPageWidget> {
                                 myLocationButtonEnabled: true,
                                 myLocationEnabled: true,
                                 initialCameraPosition:
-                                     const google_map.CameraPosition(
+                                    const google_map.CameraPosition(
                                         target:
                                             google_map.LatLng(22.7196, 75.8577),
                                         zoom: 6),
