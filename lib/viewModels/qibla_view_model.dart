@@ -27,7 +27,7 @@ class QiblaViewModel extends ChangeNotifier{
   String sunriseTimings = '';
   String sunsetTimings = '';
   late Welcome _welcome;
-  LocationData? _locationData;
+  LocationData? locationData;
   String formattedDate = '' ;
   String readableDate = '';
   final Location location = Location();
@@ -77,7 +77,7 @@ class QiblaViewModel extends ChangeNotifier{
       }
     }
 
-    _locationData = await location.getLocation();
+    locationData = await location.getLocation();
   }
 
   int totalPendingAmount = 0;
@@ -137,9 +137,9 @@ class QiblaViewModel extends ChangeNotifier{
       _status = Status.loading;
       preferences = await SharedPreferences.getInstance();
       preferences.setString('date', formattedDate);
-      preferences.setString('lat', _locationData!.latitude.toString() );
-      preferences.setString('lon', _locationData!.longitude.toString());
-      _welcome = await _locationService.fetchLocationDetails(formattedDate, _locationData!.latitude.toString(), _locationData!.longitude.toString());
+      preferences.setString('lat', locationData!.latitude.toString() );
+      preferences.setString('lon', locationData!.longitude.toString());
+      _welcome = await _locationService.fetchLocationDetails(formattedDate, locationData!.latitude.toString(), locationData!.longitude.toString());
       fajrTimings = _welcome.data.timings.fajr;
       readableDate = _welcome.data.date.readable;
       maghribTimings = _welcome.data.timings.maghrib;
